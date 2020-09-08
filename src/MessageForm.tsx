@@ -54,6 +54,7 @@ render() {
       <form autoComplete="off" >
         <div className='message-form-text-input'> 
           <TextField  
+            data-testid='form-sender-input'
             label="Sender"
             variant="outlined"
             defaultValue="Enterprise"
@@ -62,17 +63,19 @@ render() {
             }}
         />
         </div>
-      <div className='message-form-text-input'>
-        <TextField  
-          placeholder='614...'
-          required
-          label="Recipient"
-          variant="outlined"
-          onChange={this.handleChangeRecipient}
-        />
-      </div>
+        <div className='message-form-text-input'>
+          <TextField  
+            data-testid='form-recipient-input'
+            placeholder='614...'
+            required
+            label="Recipient"
+            variant="outlined"
+            onChange={this.handleChangeRecipient}
+          />
+        </div>
         <div className='message-form-text-input'> 
            <TextField
+            data-testid='form-message-input'
             required
             label="Message"
             multiline
@@ -86,17 +89,17 @@ render() {
             Message length should be less or equal 480 characters 
           </FormHelperText>
         </div>
-          </form>
-        <div className='message-form-text-input'> 
-          <Button 
-            variant="contained" 
-            color="primary"
-            disabled={!formIsValid()}
-            onClick={this.handleClick}
-          > Submit </Button>
+      </form>
+      <div className='message-form-text-input'> 
+        <Button 
+          data-testid='form-submit-button'
+          variant="contained" 
+          color="primary"
+          disabled={!formIsValid()}
+          onClick={this.handleClick}
+        > Submit </Button>
 
-        </div>
-    
+      </div>
     </div>
   );
 }
