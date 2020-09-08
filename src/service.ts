@@ -1,6 +1,6 @@
-import authData from './config'
+import authData from './utils/config'
 
-type SendSMSResponse = void;
+type SendSMSResponse = Promise<Response>
 
 export const sendSMS = (
   sender: string,
@@ -27,7 +27,6 @@ const requestOptions: RequestInit = {
 const  proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 const  targetUrl = 'https://api.transmitmessage.com/v1/sms/message'
 
-fetch(proxyUrl + targetUrl, requestOptions)
-  .then(response => response.text())
-	.then(result => console.log(result))
+return fetch(proxyUrl + targetUrl, requestOptions)
+
 }
