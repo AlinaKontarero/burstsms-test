@@ -36,7 +36,7 @@ class MessagePage extends React.Component<{}, State> {
 
   public render() {
     return (
-    <div className="MessagePage">
+    <div className="MessagePage" data-testid='message-page'>
       <MessageForm 
         getInputData={this.getData}
       />
