@@ -1,44 +1,51 @@
 import React from "react";
-
-import MessageDisplay, { IMessage } from "./MessageDisplay";
-import MessageForm, { IMessageData } from "./MessageForm";
 import { sendSMS } from "./service";
+import { IMessage, ISentMessage } from "./utils/types";
+import MessageForm from "./MessageForm";
+import MessageDisplay from "./MessageDisplay";
 
 interface State {
-  messages?: IMessage[]
+  messagesArray: IMessage[]
+  message?: IMessage
 }
-
 
 class MessagePage extends React.Component<{}, State> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(props: any) {
     super(props)
-    this.state = { messages: undefined }
+    this.state = { message: undefined, messagesArray: [] }
   }
- private myCallback = async (messageData: IMessageData) => {
-    // const resp = 
+
+  private getData = async (messageData: ISentMessage)  => {
     await sendSMS(messageData.sender, messageData.recipient, messageData.message)
-    this.setState({messages: this.messages})
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ message: {
+        cost: result.sms.cost,
+        recipient: result.sms.recipient,
+        message: result.sms.message
+      }}
+      )
+    })
+    .then(() => {
+      if(this.state.message) {
+        this.setState({ messagesArray: [...this.state.messagesArray, this.state.message ] })
+      }
+    })
   }  
 
-  messages: IMessage[] = [
-    {recipient: 'Alina', message: 'Hi how are you?', cost: 0.15},
-    {recipient: 'Alex', message: 'Here is a simple test of your understanding of React components', cost: 0.20}
-  ]
   public render() {
-
-
-  return (
+    return (
     <div className="MessagePage">
       <MessageForm 
-        callbackFromParent={this.myCallback}
+        getInputData={this.getData}
       />
       <MessageDisplay
-        messages={this.state.messages}
+        messages={this.state.messagesArray}
       />
     </div>
   );
-}
+  }
 };
 
 export default MessagePage;

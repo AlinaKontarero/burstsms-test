@@ -2,20 +2,15 @@ import React from "react";
 import TextField from '@material-ui/core/TextField';
 import { FormHelperText, Button } from "@material-ui/core";
 import './style/message-form.css'
-import { sendSMS } from "./service";
+import { ISentMessage } from "./utils/types";
 
-export type IMessageData = {
-  sender: string
-  recipient: string
-  message: string
-}
 interface Props {
-  callbackFromParent: (datachild: IMessageData) => void
+  getInputData: (inputData: ISentMessage) => void
 }
 
 interface State {
-  recipient: string | undefined
-  message: string | undefined
+  recipient?: string
+  message?: string
 }
 
 class MessageForm extends React.Component<Props, State> {
@@ -27,16 +22,16 @@ class MessageForm extends React.Component<Props, State> {
     }
   }
 
-handleChangeRecipient = (event: React.ChangeEvent<HTMLInputElement>) => {
+private handleChangeRecipient = (event: React.ChangeEvent<HTMLInputElement>) => {
   this.setState({ recipient: event.target.value })
 }
 
-handleChangeMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
+private handleChangeMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
   this.setState({ message: event.target.value })
 }
 
-handleClick = () => {
-  this.props.callbackFromParent({
+private handleClick = () => {
+  this.props.getInputData({
     sender: "Enterprise",
     recipient: this.state.recipient!,
     message: this.state.message!
