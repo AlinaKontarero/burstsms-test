@@ -1,0 +1,37 @@
+:root {
+  --main-background-color: #00AEC5;
+  --main-text-color: white;
+}
+
+.message-bubble {
+  display: inline-block;
+  position: relative;
+  max-width: 183px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: left;
+  font-weight: normal;      
+  overflow-wrap: break-word;
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+  margin: 8px auto 8px 0px;
+}
+
+.messages-box { 
+  align-content: start;
+  justify-content: flex-start;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 200px
+}
+
+.message-bubble:first-child {
+  margin-top: 16px;
+}
+
+.message-display-header { 
+  font-size: 16px;
+  padding: 16px 0;
+}
