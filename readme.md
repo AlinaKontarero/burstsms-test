@@ -9,7 +9,7 @@ Taking into account the app security, I would like to check the request headers 
 
 ### Testing 
 
-Jest testing the `Create React App` bootstrapped project needs to overwrite the scripts for Windows 10 Pro machine . It would take some time, so I provided a couple of tests as a direction to the possible unit testing. 
+Jest testing the `Create React App` bootstrapped project needs to overwrite the scripts for Windows 10 Pro machine. It would take some time, so I provided a couple of tests as a direction to the possible unit testing. 
 
 Cheers, 
 Alina 
