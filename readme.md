@@ -7,9 +7,3 @@ Highly likely, changing the request headers with disabling CORS could influence 
 
 Taking into account the app security, I would like to check the request headers with a backend team to avoid the CORS errors with the request to avoid using the `Heroku app`. 
 
-### Testing 
-
-Jest testing the `Create React App` bootstrapped project needs to overwrite the scripts for Windows 10 Pro machine. It would take some time, so I provided a couple of tests as a direction to the possible unit testing. 
-
-Cheers, 
-Alina 
